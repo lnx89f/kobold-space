@@ -1,0 +1,21 @@
+id = "kobold/itaiopolis-weather"
+name = "Clima de Itaiópolis"
+version = "1.0.0"
+plugin_api = 24
+author = "kobold"
+license = "MIT"
+icon = "cloud"
+description = "Meteorologia de Itaiópolis/SC, atualizada a cada hora. Widgets opcionais para barra e desktop."
+tags = ["weather", "desktop", "bar"]
+
+[[service]]
+id = "weather"
+entry = "service.luau"
+
+[[widget]]
+id = "bar"
+entry = "bar.luau"
+
+[[desktop_widget]]
+id = "desktop"
+entry = "desktop.luau"

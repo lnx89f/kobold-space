@@ -31,7 +31,7 @@ class NixOSProfileTests(unittest.TestCase):
     def test_fedora_export_still_keeps_its_plugin_and_monitor_selection(self):
         settings = tomllib.loads(installer.render_settings('fedora', Path('/home/alice'), 'DP-2'))
         self.assertEqual(settings['config_version'], 14)
-        self.assertEqual(settings['plugins']['enabled'], ['kobold/workspaces-outline'])
+        self.assertEqual(settings['plugins']['enabled'], ['kobold/itaiopolis-weather'])
         self.assertIn('DP-2', settings['wallpaper']['monitors'])
 
     def test_install_into_temporary_home_preserves_backup_and_mutable_files(self):
@@ -75,6 +75,8 @@ class NixOSProfileTests(unittest.TestCase):
             self.assertIn('background-color "transparent"', cosmos)
             self.assertEqual((home / '.local/share/backgrounds/niri/cosmos-minimal-pixel.png').read_bytes(),
                              (ROOT / 'assets/cosmos-minimal-pixel.png').read_bytes())
+            self.assertEqual((home / '.local/share/backgrounds/niri/sol-noturno.png').read_bytes(),
+                             (ROOT / 'assets/sol-noturno.png').read_bytes())
             self.assertFalse((home / '.local/share/noctalia/plugins/workspaces-outline').exists())
             changes = json.loads((backup / 'changes.json').read_text())
             self.assertIn('.local/state/noctalia/settings.toml', [c['path'] for c in changes])

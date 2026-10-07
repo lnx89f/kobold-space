@@ -129,6 +129,10 @@ def main():
     install_file(ROOT / 'assets/kobold-wallpaper.png', wallpaper)
     overview_wallpaper = home / '.local/share/backgrounds/niri/cosmos-minimal-pixel.png'
     install_file(ROOT / 'assets/cosmos-minimal-pixel.png', overview_wallpaper)
+    current_overview = json.loads((ROOT / 'preset.json').read_text())['overview_wallpaper']
+    if current_overview != 'cosmos-minimal-pixel.png':
+        install_file(ROOT / 'assets' / current_overview,
+                     home / '.local/share/backgrounds/niri' / current_overview)
     if args.profile == 'nixos':
         # Noctalia's declared config and mutable GUI state are separate layers.
         # Reset previous GUI overrides with a backup so they do not mask this

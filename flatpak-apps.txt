@@ -1,4 +1,6 @@
-# Apps Flatpak instalados em 2026-10-06 (Flathub)
+com.ktechpit.red
 com.protonvpn.www
 com.snes9x.Snes9x
+com.valvesoftware.Steam
+de.haeckerfelix.Fragments
 org.mozilla.firefox

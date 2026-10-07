@@ -1,12 +1,49 @@
 config_version = 14
 
+[audio]
+enable_overdrive = true
+
 [bar.default]
 background_opacity = 0.0
-end = [ "media", "tray", "network", "bluetooth", "brightness", "battery", "volume" ]
+end = [ "group:g1" ]
 margin_ends = 0
 padding = 0
-start = [ "overview", "launcher" ]
+start = [ "overview", "bar", "sysmon" ]
 thickness = 22
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    border = "on_surface"
+    border_width = 1.0
+    enabled = true
+    fill = "on_primary"
+    id = "g1"
+    members = [ "media", "clipboard", "tray", "network", "bluetooth", "brightness", "battery", "volume" ]
+    opacity = 1.0
+    padding = 6.0
+
+[control_center.calendar]
+show_events_card = false
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[dock]
+background_opacity = 0.99999997764825821
+enabled = true
+icon_size = 38
+launcher_position = "start"
+reserve_space = false
+smart_auto_hide = true
 
 [lockscreen_widgets]
 enabled = false
@@ -46,11 +83,43 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
         show_weather = true
 
 [plugins]
-enabled = [ "kobold/workspaces-outline" ]
+enabled = [ "kobold/itaiopolis-weather" ]
 
-[shell.panel]
-launcher_placement = "attached"
-open_near_click_launcher = true
+    [[plugins.source]]
+    kind = "git"
+    location = "https://github.com/noctalia-dev/official-plugins"
+    name = "official"
+
+    [[plugins.source]]
+    enabled = false
+    kind = "git"
+    location = "https://github.com/noctalia-dev/community-plugins"
+    name = "community"
+
+[shell]
+clipboard_auto_paste = "off"
+clipboard_confirm_clear_history = false
+clipboard_keep_from_closed_apps = false
+corner_radius_scale = 1.3000000193715096
+niri_overview_type_to_launch_enabled = true
+
+    [shell.launcher]
+    pinned = [
+        "org.mozilla.firefox",
+        "thunar",
+        "Alacritty",
+        "com.snes9x.Snes9x",
+        "com.protonvpn.www",
+        "de.haeckerfelix.Fragments",
+        "com.valvesoftware.Steam",
+        "btop",
+        "virt-manager"
+    ]
+
+    [shell.panel]
+    control_center_placement = "floating"
+    open_near_click_control_center = true
+    transparency_mode = "glass"
 
 [theme]
 builtin = "Eldritch"
@@ -78,6 +147,9 @@ path = "@HOME@/.local/share/backgrounds/kobold/kobold-wallpaper.png"
 color_1 = "on_surface_variant"
 color_2 = "on_surface_variant"
 
+[widget.bar]
+type = "kobold/itaiopolis-weather:bar"
+
 [widget.battery]
 show_label = false
 
@@ -85,6 +157,8 @@ show_label = false
 show_label = false
 
 [widget.clock]
+capsule = true
+capsule_border = "outline"
 format = "   {:%H:%M}   "
 
 [widget.launcher]

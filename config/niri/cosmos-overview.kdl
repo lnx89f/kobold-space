@@ -21,7 +21,7 @@ layer-rule {
     place-within-backdrop true
 }
 
-spawn-at-startup "swaybg" "-i" "@HOME@/.local/share/backgrounds/niri/cosmos-minimal-pixel.png" "-m" "fill"
+spawn-at-startup "swaybg" "-i" "@HOME@/.local/share/backgrounds/niri/sol-noturno.png" "-m" "fill"
 
 // Open the overview explicitly instead of using screen corners.
 gestures {

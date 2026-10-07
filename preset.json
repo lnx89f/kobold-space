@@ -14,8 +14,8 @@
   "border_opacity": 0.5,
   "gtk_theme": "Orchis-Green-Dark",
   "palette": "kobold-matrix",
-  "updated": "2026-10-06T16:19:38.124024-03:00",
-  "overview_wallpaper": "cosmos-minimal-pixel.png",
+  "updated": "2026-10-07T17:02:57.298832-03:00",
+  "overview_wallpaper": "sol-noturno.png",
   "workspace_background": "transparent",
   "workspace_wallpaper_opacity": 0,
   "workspace_shadow": false,
@@ -31,8 +31,11 @@
     "remote": "flathub",
     "installation": "system",
     "apps": [
+      "com.ktechpit.red",
       "com.protonvpn.www",
       "com.snes9x.Snes9x",
+      "com.valvesoftware.Steam",
+      "de.haeckerfelix.Fragments",
       "org.mozilla.firefox"
     ]
   },
@@ -40,5 +43,11 @@
   "export_versions": {
     "niri": "26.04",
     "noctalia": "5.2.0"
-  }
+  },
+  "rpm_ostree": {
+    "manifest": "system/rpm-ostree.json"
+  },
+  "noctalia_plugins_enabled": [
+    "kobold/itaiopolis-weather"
+  ]
 }

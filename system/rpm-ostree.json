@@ -1,0 +1,28 @@
+{
+  "base": "fedora:fedora/44/x86_64/sericea",
+  "install": [
+    "btop",
+    "distrobox",
+    "gh",
+    "git",
+    "libvirt-client",
+    "libvirt-daemon-config-network",
+    "libvirt-daemon-kvm",
+    "lynis",
+    "niri",
+    "noctalia",
+    "qemu-img",
+    "qemu-kvm",
+    "virt-install",
+    "virt-manager",
+    "virt-viewer"
+  ],
+  "override_remove": [
+    "firefox",
+    "firefox-langpacks",
+    "foot",
+    "rofi"
+  ],
+  "override_replace": [],
+  "source": "deployment .origin; declara\u00e7\u00f5es iguais em todos os arquivos selecionados"
+}
