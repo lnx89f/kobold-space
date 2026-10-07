@@ -1,0 +1,21 @@
+// Keep inactive window outlines dark charcoal when Noctalia regenerates its theme.
+layout {
+    focus-ring {
+        inactive-color "#292C30"
+        urgent-color "#292C30"
+    }
+    border {
+        active-color "rgba(136, 112, 232, 0.5)"
+        inactive-color "rgba(41, 44, 48, 0.5)"
+        urgent-color "rgba(41, 44, 48, 0.5)"
+    }
+    tab-indicator {
+        inactive-color "#292C30"
+        urgent-color "#292C30"
+    }
+}
+recent-windows {
+    highlight {
+        urgent-color "#292C30"
+    }
+}

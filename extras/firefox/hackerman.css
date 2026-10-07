@@ -1,0 +1,18 @@
+/* Omarchy Hackerman: browser chrome only */
+:root {
+ --toolbar-bgcolor: #0b0c16 !important;
+ --toolbar-color: #ddf7ff !important;
+ --lwt-accent-color: #080910 !important;
+ --lwt-text-color: #ddf7ff !important;
+ --tab-selected-bgcolor: #1f253a !important;
+ --tab-selected-textcolor: #82fb9c !important;
+ --toolbar-field-background-color: #151828 !important;
+ --toolbar-field-color: #ddf7ff !important;
+ --toolbar-field-focus-border-color: #82fb9c !important;
+ --lwt-toolbarbutton-icon-fill: #82fb9c !important;
+ --arrowpanel-background: #151828 !important;
+ --arrowpanel-color: #ddf7ff !important;
+ --arrowpanel-border-color: #2d3450 !important;
+}
+#navigator-toolbox { background: #080910 !important; color: #ddf7ff !important; }
+.tab-background[selected] { border-bottom: 2px solid #82fb9c !important; }

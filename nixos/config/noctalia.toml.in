@@ -1,0 +1,61 @@
+# Portable native Noctalia v5 configuration; GUI overrides remain writable.
+[shell]
+polkit_agent = true
+
+[bar.default]
+background_opacity = 0.0
+center = [ "launcher", "clock", "media" ]
+end = [ "notifications", "clipboard", "tray", "network", "bluetooth", "brightness", "battery", "volume" ]
+margin_ends = 0
+start = [ "workspaces" ]
+thickness = 22
+
+[theme]
+custom_palette = "kobold-matrix"
+mode = "dark"
+pure_black_dark = true
+source = "custom"
+
+[theme.templates]
+builtin_ids = [ "alacritty", "btop", "niri" ]
+community_ids = []
+
+[wallpaper.default]
+path = "@HOME@/.local/share/backgrounds/kobold/kobold-wallpaper.png"
+
+[widget.battery]
+show_label = false
+
+[widget.brightness]
+show_label = false
+
+[widget.clock]
+format = "   {:%H:%M}   "
+
+[widget.launcher]
+glyph = "skull"
+
+[widget.media]
+glyph = "player-play"
+label = ""
+tooltip = "Mídia"
+type = "custom_button"
+
+[widget.media.actions]
+back = "media previous"
+forward = "media next"
+left = "panel-toggle control-center media"
+right = "media toggle"
+
+[widget.network]
+show_label = false
+
+[widget.volume]
+show_label = false
+
+[widget.workspaces]
+font_scale = 1.1
+scale = 1.1
+
+[widget.workspaces.actions]
+right = "screenshot-fullscreen"

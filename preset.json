@@ -1,0 +1,44 @@
+{
+  "created": "2026-10-01T14:23:22.498286",
+  "icon_theme": "Papirus-Dark",
+  "folder_color": "black",
+  "border_px": 1,
+  "corner_radius_px": 4,
+  "scale": 1,
+  "sources": {
+    "palette": "https://github.com/omacom/omarchy/tree/quattro/themes/hackerman",
+    "wallpaper": "https://github.com/lnx89f/kobold-bluefin",
+    "icons": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/tree/20250501"
+  },
+  "name": "Kobold Space",
+  "border_opacity": 0.5,
+  "gtk_theme": "Orchis-Green-Dark",
+  "palette": "kobold-matrix",
+  "updated": "2026-10-06T16:19:38.124024-03:00",
+  "overview_wallpaper": "cosmos-minimal-pixel.png",
+  "workspace_background": "transparent",
+  "workspace_wallpaper_opacity": 0,
+  "workspace_shadow": false,
+  "nixos": {
+    "module": "nixos/default.nix",
+    "profile": "nixos",
+    "baseline": "26.05",
+    "noctalia": "native v5",
+    "visual_config": "mutable with backups"
+  },
+  "flatpak": {
+    "manifest": "flatpak-apps.txt",
+    "remote": "flathub",
+    "installation": "system",
+    "apps": [
+      "com.protonvpn.www",
+      "com.snes9x.Snes9x",
+      "org.mozilla.firefox"
+    ]
+  },
+  "niri_hot_corners": false,
+  "export_versions": {
+    "niri": "26.04",
+    "noctalia": "5.2.0"
+  }
+}

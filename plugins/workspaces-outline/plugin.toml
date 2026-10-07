@@ -1,0 +1,10 @@
+id = "kobold/workspaces-outline"
+name = "Workspaces Outline"
+version = "1.0.0"
+plugin_api = 24
+author = "kobold"
+description = "Workspaces do Niri com contorno e número centralizado."
+
+[[widget]]
+id = "workspaces"
+entry = "widget.luau"
