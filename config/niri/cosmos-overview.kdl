@@ -10,10 +10,10 @@ layout {
     background-color "transparent"
 }
 
-// Hide the workspace wallpaper while retaining Noctalia's wallpaper selection.
+// Let Noctalia manage the wallpaper, including the overview backdrop.
 layer-rule {
     match namespace="^noctalia-wallpaper$"
-    opacity 0.0
+    place-within-backdrop true
 }
 
 layer-rule {
@@ -21,7 +21,6 @@ layer-rule {
     place-within-backdrop true
 }
 
-spawn-at-startup "swaybg" "-i" "@HOME@/.local/share/backgrounds/niri/sol-noturno.png" "-m" "fill"
 
 // Open the overview explicitly instead of using screen corners.
 gestures {

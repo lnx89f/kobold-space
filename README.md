@@ -5,8 +5,8 @@ Estado declarativo do desktop Fedora Atomic com Niri, Noctalia, paleta Kobold Ma
 - Borda colorida de 1 px com 50% de transparência; cantos com raio de 4 px.
 - Escala de 100%; monitor padrão `eDP-1`.
 - Wallpaper de sol noturno no fundo do overview, exportado da configuração ativa.
-- Workspaces com fundo totalmente transparente, wallpaper do Noctalia invisível e sem sombra no overview; sem retângulos visíveis ao redor dos workspaces.
-- Barra transparente de 22 px: overview, clima de Itaiópolis e monitor do sistema à esquerda; mídia, clipboard, bandeja, rede, Bluetooth, brilho, bateria e volume à direita, agrupados em cápsula com borda. Dock habilitado com ocultação automática.
+- Workspaces com fundo totalmente transparente, wallpaper gerenciado pelo Noctalia e sem sombra no overview; sem retângulos visíveis ao redor dos workspaces.
+- Barra transparente de 26 px: overview, clima de Itaiópolis e monitor do sistema à esquerda; mídia, clipboard, bandeja, rede, Bluetooth, brilho, bateria e volume à direita. Dock habilitado com ocultação automática.
 - Botões laterais do mouse navegam entre colunas; cantos ativos desativados. O botão do overview abre a visão geral e sua rolagem troca workspaces.
 - Launcher com ícone de menu e painel junto ao ponto de clique; notificações e tela de bloqueio do Noctalia.
 - GTK 3/4 e Thunar; Alacritty e Btop; integração GTK para Qt.
@@ -37,11 +37,11 @@ O instalador substitui os arquivos de configuração incluídos neste preset e f
 
 Reabra os aplicativos depois de instalar. Para a integração Qt, entre novamente na sessão. O preto já está aplicado aos ícones incluídos; não precisa de `papirus-folders`.
 
-O `swaybg` exibe o sol noturno em uma camada dedicada ao backdrop do Niri. A seleção de wallpaper do Noctalia é preservada, mas sua camada fica com opacidade zero. O fundo dos workspaces é transparente e `workspace-shadow` fica desativado. Abra o overview com `Super+O`. Os cantos das janelas continuam com raio de 4 px; o Niri 26.04 não oferece arredondamento dos próprios workspaces.
+O Noctalia exibe o sol noturno e sua camada é posicionada no backdrop do Niri. O instalador exporta o wallpaper selecionado para um caminho portátil. O fundo dos workspaces é transparente e `workspace-shadow` fica desativado. Abra o overview com `Super+O`. Os cantos das janelas continuam com raio de 4 px; o Niri 26.04 não oferece arredondamento dos próprios workspaces.
 
 ## Preset de apps Flatpak
 
-Lista exportada da instalação atual: Firefox, Proton VPN, Snes9x, Steam, Fragments e Red (`com.ktechpit.red`), todos do Flathub. Os IDs estão em `flatpak-apps.txt`. Inclui apenas os IDs dos apps, sem dados ou contas. A instalação dos apps é separada do visual:
+Lista exportada da instalação atual: Firefox, Proton VPN, Snes9x, Steam, Fragments, Heroic Games Launcher, Fedora Media Writer e Red (`com.ktechpit.red`), todos do Flathub. Os IDs estão em `flatpak-apps.txt`. Inclui apenas os IDs dos apps, sem dados ou contas. A instalação dos apps é separada do visual:
 
 ```bash
 bash instalar-flatpaks.sh --dry-run
@@ -86,7 +86,7 @@ O exportador não inclui histórico, credenciais, notificações, clipboard, per
 
 ## Versionamento declarativo local
 
-`config/niri/` e `config/noctalia/settings.toml.in` registram as configurações atuais; `@HOME@` é resolvido pelo instalador. `assets/sol-noturno.png` é o wallpaper ativo do overview, copiado do arquivo local `backup-wallpaper-sol-noturno-20261007-152808.png`. O wallpaper do Noctalia continua separado, com sua camada invisível. Os plugins são versionados sem o cache meteorológico ou o histórico de notificações.
+`config/niri/` e `config/noctalia/settings.toml.in` registram as configurações atuais; `@HOME@` é resolvido pelo instalador. `assets/sol-noturno.png` é o wallpaper ativo do overview, copiado do arquivo local `backup-wallpaper-sol-noturno-20261007-152808.png`. O Noctalia gerencia o wallpaper, inclusive no overview. Os plugins são versionados sem o cache meteorológico ou o histórico de notificações.
 
 `system/rpm-ostree.json` declara a base `fedora:fedora/44/x86_64/sericea`, 15 pacotes solicitados e os overrides que removem `firefox`, `firefox-langpacks`, `foot` e `rofi`. A captura veio dos arquivos `.origin` dos dois deployments, cujas declarações eram iguais; a consulta ao serviço não estava disponível no ambiente de edição. Não há overrides de substituição nessa captura. A lista registra solicitações, incluindo pacotes que possam estar inativos na base, e não todas as dependências instaladas.
 
@@ -110,8 +110,10 @@ git add .
 git commit -m "config: atualiza estado declarativo do desktop"
 ```
 
-O exportador atualiza Niri, estado visual do Noctalia, paletas, temas gerados de Alacritty/Btop, plugins locais incluídos, wallpapers, apps Flatpak, manifesto rpm-ostree e hashes. Não executa instalações. Se os deployments divergirem, exige `--origin /ostree/deploy/fedora/deploy/DEPLOYMENT.origin` para escolher explicitamente o estado a versionar. Novas fontes de Flatpak ou tipos de override exigem adaptar o exportador. GTK, módulos NixOS e outros arquivos continuam editáveis diretamente no projeto; depois de editá-los, execute `python3 scripts/exportar-estado.py --checksums-only`.
+O exportador atualiza Niri, estado visual do Noctalia, paletas locais e comunitárias, GTK, temas gerados de Alacritty/Btop, plugins locais incluídos, wallpapers, apps Flatpak, manifesto rpm-ostree e hashes. Não executa instalações. Se os deployments divergirem, exige `--origin /ostree/deploy/fedora/deploy/DEPLOYMENT.origin` para escolher explicitamente o estado a versionar. Novas fontes de Flatpak ou tipos de override exigem adaptar o exportador. Módulos NixOS e outros arquivos continuam editáveis diretamente no projeto; depois de editá-los, execute `python3 scripts/exportar-estado.py --checksums-only`.
 
 O histórico local começa com o preset anterior e um commit da captura de 2026-10-07. Como não havia identidade Git configurada, esses commits usam `kobold <kobold@localhost>` apenas na execução do commit, sem alterar sua configuração global. Nenhum push foi realizado.
 
 Validação da captura: Niri e Noctalia aceitaram a configuração. O Noctalia avisou sobre a referência residual `kobold/workspaces-outline:workspaces`, cujo plugin não está habilitado no estado exportado; ela foi preservada como estava no desktop.
+
+Captura de 2026-10-09: barra de 26 px, wallpaper controlado pelo Noctalia, plugin oficial mpvpaper habilitado e atalhos atuais. Publicação pendente: autenticação GitHub inválida e DNS indisponível no ambiente de edição.

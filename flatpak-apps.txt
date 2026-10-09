@@ -1,6 +1,8 @@
+com.heroicgameslauncher.hgl
 com.ktechpit.red
 com.protonvpn.www
 com.snes9x.Snes9x
 com.valvesoftware.Steam
 de.haeckerfelix.Fragments
+org.fedoraproject.MediaWriter
 org.mozilla.firefox

@@ -52,9 +52,8 @@ def main():
     tomllib.loads(settings)
     cosmos = (HOME / '.config/niri/cosmos-overview.kdl').read_text()
     match = re.search(r'spawn-at-startup "swaybg" "-i" "([^"]+)"', cosmos)
-    if not match:
-        raise SystemExit('Wallpaper do overview não encontrado.')
-    overview = Path(match[1])
+    shell_wallpaper = Path(tomllib.loads(settings)['wallpaper']['default']['path'])
+    overview = Path(match[1]) if match else shell_wallpaper
     if not overview.is_file():
         raise SystemExit('Wallpaper ausente: ' + str(overview))
     shell_wallpaper = Path(tomllib.loads(settings)['wallpaper']['default']['path'])
@@ -69,9 +68,28 @@ def main():
             text = text.replace(str(overview).replace('/home/kobold', '@HOME@').replace(str(HOME), '@HOME@'),
                                 '@HOME@/.local/share/backgrounds/niri/sol-noturno.png')
         (ROOT / 'config/niri' / source.name).write_text(text)
+    # Preserve selected wallpapers while making their paths portable.
+    wallpaper_settings = tomllib.loads(settings)['wallpaper']
+    for entry in [wallpaper_settings.get('last', {}), *wallpaper_settings.get('monitors', {}).values()]:
+        if entry.get('path') and entry['path'] != str(shell_wallpaper):
+            raise SystemExit('Wallpapers diferentes por monitor: adaptar exportação antes de publicar.')
+    settings = settings.replace(str(shell_wallpaper), '@HOME@/.local/share/backgrounds/kobold/kobold-wallpaper.png')
+    if wallpaper_settings.get('directory'):
+        settings = settings.replace(wallpaper_settings['directory'], '@HOME@/.local/share/backgrounds/kobold/')
     (ROOT / 'config/noctalia/settings.toml.in').write_text(settings.replace(str(HOME), '@HOME@').replace('/home/kobold', '@HOME@'))
     for relative in ('noctalia/palettes', 'alacritty/themes', 'btop/themes'):
         shutil.copytree(HOME / '.config' / relative, ROOT / 'config' / relative, dirs_exist_ok=True)
+    community_palettes = HOME / '.local/state/noctalia/community-palettes'
+    if community_palettes.exists():
+        target_palettes = ROOT / 'state/noctalia/community-palettes'
+        target_palettes.mkdir(parents=True, exist_ok=True)
+        for palette in community_palettes.glob('*.json'):
+            shutil.copy2(palette, target_palettes / palette.name)
+    for relative in ('gtk-3.0', 'gtk-4.0', 'environment.d'):
+        for target in (ROOT / 'config' / relative).rglob('*'):
+            source = HOME / '.config' / target.relative_to(ROOT / 'config')
+            if target.is_file() and source.is_file():
+                shutil.copy2(source, target)
     for name in ('workspaces-outline', 'itaiopolis-weather'):
         shutil.copytree(HOME / '.local/share/noctalia/plugins' / name, ROOT / 'plugins' / name, dirs_exist_ok=True)
     shutil.copy2(overview, ROOT / 'assets/sol-noturno.png')
@@ -79,6 +97,8 @@ def main():
     preset = json.loads((ROOT / 'preset.json').read_text())
     preset['updated'] = datetime.datetime.now().astimezone().isoformat()
     preset['overview_wallpaper'] = 'sol-noturno.png'
+    preset['overview_wallpaper_provider'] = 'swaybg' if match else 'noctalia'
+    preset['workspace_wallpaper_opacity'] = 0 if match else 1
     preset['flatpak']['apps'] = apps
     preset['rpm_ostree'] = {'manifest': 'system/rpm-ostree.json'}
     preset['noctalia_plugins_enabled'] = tomllib.loads(settings)['plugins']['enabled']

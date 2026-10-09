@@ -144,6 +144,11 @@ def main():
             install_file(None, fedora_env, '# Qt integration is managed by the NixOS qt module.\n')
     else:
         install_file(None, home / '.local/state/noctalia/settings.toml', settings)
+    palettes = ROOT / 'state/noctalia/community-palettes'
+    if palettes.exists():
+        for source in palettes.rglob('*'):
+            if source.is_file():
+                install_file(source, home / '.local/state/noctalia/community-palettes' / source.relative_to(palettes))
     community = ROOT / 'state/noctalia/community-templates'
     if community.exists():
         for source in community.rglob('*'):
@@ -171,7 +176,8 @@ def main():
         subprocess.run(['noctalia', 'msg', 'config-reload'], check=True)
         subprocess.run(['noctalia', 'msg', 'templates-apply'], check=True)
         subprocess.run(['noctalia', 'msg', 'wallpaper-set', str(wallpaper)], check=True)
-        subprocess.run(['niri', 'msg', 'action', 'spawn', '--', 'swaybg', '-i', str(overview_wallpaper), '-m', 'fill'], check=True)
+        if json.loads((ROOT / 'preset.json').read_text()).get('overview_wallpaper_provider', 'swaybg') == 'swaybg':
+            subprocess.run(['niri', 'msg', 'action', 'spawn', '--', 'swaybg', '-i', str(home / '.local/share/backgrounds/niri' / current_overview), '-m', 'fill'], check=True)
     print('Preset installed. Backup:', backup)
     print('Reopen apps or log in again to refresh all icons and Qt settings.')
 

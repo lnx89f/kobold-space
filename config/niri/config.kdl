@@ -367,6 +367,8 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Super+E repeat=false hotkey-overlay-title="Abrir Thunar" { spawn "thunar"; }
+    Super+B repeat=false hotkey-overlay-title="Abrir Firefox" { spawn "flatpak" "run" "org.mozilla.firefox"; }
     Super+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+Space repeat=false hotkey-overlay-title="Open Launcher: Noctalia" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: Noctalia" { spawn "noctalia" "msg" "session" "lock"; }

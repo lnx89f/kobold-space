@@ -14,10 +14,10 @@
   "border_opacity": 0.5,
   "gtk_theme": "Orchis-Green-Dark",
   "palette": "kobold-matrix",
-  "updated": "2026-10-07T17:02:57.298832-03:00",
+  "updated": "2026-10-09T18:31:17.539773-03:00",
   "overview_wallpaper": "sol-noturno.png",
   "workspace_background": "transparent",
-  "workspace_wallpaper_opacity": 0,
+  "workspace_wallpaper_opacity": 1,
   "workspace_shadow": false,
   "nixos": {
     "module": "nixos/default.nix",
@@ -31,11 +31,13 @@
     "remote": "flathub",
     "installation": "system",
     "apps": [
+      "com.heroicgameslauncher.hgl",
       "com.ktechpit.red",
       "com.protonvpn.www",
       "com.snes9x.Snes9x",
       "com.valvesoftware.Steam",
       "de.haeckerfelix.Fragments",
+      "org.fedoraproject.MediaWriter",
       "org.mozilla.firefox"
     ]
   },
@@ -48,6 +50,8 @@
     "manifest": "system/rpm-ostree.json"
   },
   "noctalia_plugins_enabled": [
-    "kobold/itaiopolis-weather"
-  ]
+    "kobold/itaiopolis-weather",
+    "noctalia/mpvpaper"
+  ],
+  "overview_wallpaper_provider": "noctalia"
 }

@@ -31,7 +31,8 @@ class NixOSProfileTests(unittest.TestCase):
     def test_fedora_export_still_keeps_its_plugin_and_monitor_selection(self):
         settings = tomllib.loads(installer.render_settings('fedora', Path('/home/alice'), 'DP-2'))
         self.assertEqual(settings['config_version'], 14)
-        self.assertEqual(settings['plugins']['enabled'], ['kobold/itaiopolis-weather'])
+        self.assertIn('kobold/itaiopolis-weather', settings['plugins']['enabled'])
+        self.assertIn('noctalia/mpvpaper', settings['plugins']['enabled'])
         self.assertIn('DP-2', settings['wallpaper']['monitors'])
 
     def test_install_into_temporary_home_preserves_backup_and_mutable_files(self):
@@ -71,7 +72,7 @@ class NixOSProfileTests(unittest.TestCase):
             cosmos = (home / '.config/niri/cosmos-overview.kdl').read_text()
             self.assertNotIn('@HOME@', cosmos)
             self.assertNotIn('/home/kobold', cosmos)
-            self.assertIn('opacity 0.0', cosmos)
+            self.assertIn('place-within-backdrop true', cosmos)
             self.assertIn('background-color "transparent"', cosmos)
             self.assertEqual((home / '.local/share/backgrounds/niri/cosmos-minimal-pixel.png').read_bytes(),
                              (ROOT / 'assets/cosmos-minimal-pixel.png').read_bytes())

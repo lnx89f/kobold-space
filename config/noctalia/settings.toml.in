@@ -5,23 +5,11 @@ enable_overdrive = true
 
 [bar.default]
 background_opacity = 0.0
-end = [ "group:g1" ]
+end = [ "media", "clipboard", "tray", "network", "bluetooth", "brightness", "battery", "volume" ]
 margin_ends = 0
 padding = 0
 start = [ "overview", "bar", "sysmon" ]
-thickness = 22
-
-    [[bar.default.capsule_group]]
-    accordion = false
-    accordion_direction = "end"
-    border = "on_surface"
-    border_width = 1.0
-    enabled = true
-    fill = "on_primary"
-    id = "g1"
-    members = [ "media", "clipboard", "tray", "network", "bluetooth", "brightness", "battery", "volume" ]
-    opacity = 1.0
-    padding = 6.0
+thickness = 26
 
 [control_center.calendar]
 show_events_card = false
@@ -83,7 +71,7 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
         show_weather = true
 
 [plugins]
-enabled = [ "kobold/itaiopolis-weather" ]
+enabled = [ "kobold/itaiopolis-weather", "noctalia/mpvpaper" ]
 
     [[plugins.source]]
     kind = "git"
@@ -123,6 +111,7 @@ niri_overview_type_to_launch_enabled = true
 
 [theme]
 builtin = "Eldritch"
+community_palette = "Oxocarbon"
 custom_palette = "kobold-matrix"
 mode = "dark"
 pure_black_dark = true
@@ -134,14 +123,17 @@ wallpaper_scheme = "m3-monochrome"
     builtin_ids = [ "alacritty", "btop", "niri" ]
     community_ids = [ "codex", "telegram" ]
 
-[wallpaper.default]
-path = "@HOME@/.local/share/backgrounds/kobold/kobold-wallpaper.png"
+[wallpaper]
+directory = "@HOME@/.local/share/backgrounds/kobold/"
 
-[wallpaper.last]
-path = "@HOME@/.local/share/backgrounds/kobold/kobold-wallpaper.png"
+    [wallpaper.default]
+    path = "@HOME@/.local/share/backgrounds/kobold/kobold-wallpaper.png"
 
-[wallpaper.monitors.eDP-1]
-path = "@HOME@/.local/share/backgrounds/kobold/kobold-wallpaper.png"
+    [wallpaper.last]
+    path = "@HOME@/.local/share/backgrounds/kobold/kobold-wallpaper.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "@HOME@/.local/share/backgrounds/kobold/kobold-wallpaper.png"
 
 [widget.audio_visualizer]
 color_1 = "on_surface_variant"
@@ -157,7 +149,6 @@ show_label = false
 show_label = false
 
 [widget.clock]
-capsule = true
 capsule_border = "outline"
 format = "   {:%H:%M}   "
 
